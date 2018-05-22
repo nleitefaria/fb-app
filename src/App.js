@@ -11,7 +11,7 @@ class App extends Component {
     return (
       <div>        
       	<Link to={`/home`}>Home</Link>
-      	<Link to={`/about`}>About</Link>         
+      	<Link to={`/about`}>About</Link>  
       	<Switch>        
           	<Route path='/home' component={Home}/>
           	<Route path='/about' component={About}/>
