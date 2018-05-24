@@ -15,7 +15,7 @@ import
 	PagingPanel,
 } from '@devexpress/dx-react-grid-bootstrap4';
 
-const URL = 'https://js.devexpress.com/Demos/WidgetsGallery/data/orderItems';
+const URL = 'https://sec-os-app3.7e14.starter-us-west-2.openshiftapps.com/countries';
 	
 class About extends React.PureComponent {
 	constructor(props) {
@@ -23,16 +23,13 @@ class About extends React.PureComponent {
 
 	    this.state = {
 	      columns: [
-	        { name: 'OrderNumber', title: 'Order Number' },
-	        { name: 'OrderDate', title: 'Order Date' },
-	        { name: 'StoreCity', title: 'Store City' },
-	        { name: 'StoreState', title: 'Store State' },
-	        { name: 'Employee', title: 'Employee' },
-	        { name: 'SaleAmount', title: 'Sale Amount' },
+	        { name: 'countryId', title: 'Id' },
+	        { name: 'country', title: 'Country' },
+	        { name: 'lastUpdate', title: 'Last Update' }
 	      ],
 	      rows: [],
 	      totalCount: 0,
-	      pageSize: 6,
+	      pageSize: 10,
 	      currentPage: 0,
 	      loading: true,
 	    };
@@ -54,7 +51,8 @@ class About extends React.PureComponent {
 	  queryString() {
 	    const { pageSize, currentPage } = this.state;
 
-	    return `${URL}?take=${pageSize}&skip=${pageSize * currentPage}`;
+	    //return `${URL}?take=${pageSize}&skip=${pageSize * currentPage}`;
+	    return `${URL}/${currentPage + 1}/${pageSize}`;
 	  }
 	  loadData() {
 	    const queryString = this.queryString();
@@ -66,8 +64,8 @@ class About extends React.PureComponent {
 	    fetch(queryString)
 	      .then(response => response.json())
 	      .then(data => this.setState({
-	        rows: data.items,
-	        totalCount: data.totalCount,
+	        rows: data.content,
+	        totalCount: data.totalElements,
 	        loading: false,
 	      }))
 	      .catch(() => this.setState({ loading: false }));
