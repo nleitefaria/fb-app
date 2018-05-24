@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Card } from 'reactstrap';
 
 import 
@@ -75,7 +75,7 @@ class About extends React.PureComponent {
 	  }
 	  render() {
 	    const {
-	      rows, columns, pageSize, currentPage, totalCount, loading,
+	      rows, columns, pageSize, currentPage, totalCount,
 	    } = this.state;
 
 	    return (
